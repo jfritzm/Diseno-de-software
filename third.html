@@ -1,0 +1,90 @@
+<html>
+  <body>
+    <div id="app"></div>
+ 
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+    <script type="text/jsx">
+      const app = document.getElementById("app");
+
+      const styles = {
+        container: {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          textAlign: 'center',
+          backgroundColor: '#B3E5FC'
+        },
+        game: {
+          listStyleType: 'none',
+          marginBottom: '20px'
+        },
+        img: {
+          marginTop: '10px',
+          width: '300px'
+        }
+      };
+ 
+      function Header({ title }) {
+        return <h1>{title ? title : "Default title"}</h1>;
+      }
+ 
+      function Game({ name, imgSrc }) {
+        const [likes, setLikes] = React.useState(0);
+        const [isFavorite, setIsFavorite] = React.useState(false);
+ 
+        function handleLikeClick() {
+          setLikes(likes + 1);
+        }
+
+        function handleFavoriteClick() {
+          setIsFavorite(!isFavorite);
+        }
+ 
+        return (
+          <li style={styles.game}>
+            <span>{name}</span>
+            <button style={{ marginLeft: "10px" }} onClick={handleLikeClick}>
+              Like ({likes})
+            </button>
+            <button
+              style={{ marginLeft: "10px" }}
+              onClick={handleFavoriteClick}
+            >
+              {isFavorite ? "Unfavorite" : "Favorite"}
+            </button>
+            <div>
+              <img src={imgSrc} alt={name} style={styles.img} />
+            </div>
+          </li>
+        );
+      }
+ 
+      function HomePage() {
+        const games = [
+          { name: "Catan", imgSrc: "catan.jpg" },
+          { name: "Carcassonne", imgSrc: "carca.jpg" },
+          { name: "Agricola", imgSrc: "agricola.jpg" },
+        ];
+ 
+        return (
+          <div style={styles.container}>
+            <Header title="Juegos de Mesa" />
+            <ul>
+              {games.map((game) => (
+                <Game key={game.name} name={game.name} imgSrc={game.imgSrc} />
+              ))}
+            </ul>
+          </div>
+        );
+      }
+ 
+      const root = ReactDOM.createRoot(app);
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
