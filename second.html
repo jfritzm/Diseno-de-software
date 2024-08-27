@@ -1,0 +1,221 @@
+<html>
+  <head>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+       body {
+        background-color: #fff9c4; 
+      }
+        
+      .carousel-item {
+        text-align: center;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: black;
+      }
+
+      .carousel-inner img {
+        width: 70%; 
+        height: 500px; 
+        object-fit: cover;
+        margin: 0 auto;
+      }
+
+      .columns {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+
+      .column {
+        width: 48%;
+      }
+
+      @media (max-width: 768px) {
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+
+    <script type="text/jsx">
+      function Carousel() {
+        return (
+          <div
+            id="breakingBadCarousel"
+            className="carousel slide"
+            data-ride="carousel"
+          >
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img
+                  
+                  src="foto1.jpg"
+                  className="d-block"
+                  alt="Breaking Bad 1"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="foto2.jpg"
+                  className="d-block"
+                  alt="Breaking Bad 2"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="foto3.jpg"
+                  className="d-block"
+                  alt="Breaking Bad 3"
+                />
+              </div>
+            </div>
+            <a
+              className="carousel-control-prev"
+              href="#breakingBadCarousel"
+              role="button"
+              data-slide="prev"
+            >
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="sr-only">Previous</span>
+            </a>
+            <a
+              className="carousel-control-next"
+              href="#breakingBadCarousel"
+              role="button"
+              data-slide="next"
+            >
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="sr-only">Next</span>
+            </a>
+          </div>
+        );
+      }
+
+      function Columns() {
+        return (
+          <div className="columns">
+            <div className="column">
+              <h2>Breaking Bad: Un Análisis</h2>
+              <p>
+                Breaking Bad es una serie que ha capturado la atención de millones
+                de espectadores en todo el mundo. La historia de Walter White, un
+                profesor de química convertido en fabricante de metanfetaminas, es un
+                relato fascinante sobre la corrupción moral y la ambición
+                desenfrenada.
+              </p>
+            </div>
+            <div className="column">
+              <h2>Impacto Cultural</h2>
+              <p>
+                Desde su debut, Breaking Bad ha sido aclamada por la crítica y ha
+                tenido un impacto cultural significativo. Los personajes icónicos,
+                como Walter White y Jesse Pinkman, se han convertido en símbolos de
+                la televisión moderna, y la serie ha generado debates sobre temas
+                como la ética, el poder y la responsabilidad.
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      function Accordion() {
+        return (
+          <div className="accordion" id="breakingBadAccordion" style={{ padding: '20px' }}>
+            <div className="card">
+              <div className="card-header" id="headingOne">
+                <h2 className="mb-0">
+                  <button
+                    className="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Sinopsis
+                  </button>
+                </h2>
+              </div>
+
+              <div
+                id="collapseOne"
+                className="collapse show"
+                aria-labelledby="headingOne"
+                data-parent="#breakingBadAccordion"
+              >
+                <div className="card-body">
+                  Breaking Bad narra la vida de Walter White, un profesor de química
+                  que, tras ser diagnosticado con cáncer, decide fabricar
+                  metanfetaminas para asegurar el futuro financiero de su familia.
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-header" id="headingTwo">
+                <h2 className="mb-0">
+                  <button
+                    className="btn btn-link collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Personajes Principales
+                  </button>
+                </h2>
+              </div>
+              <div
+                id="collapseTwo"
+                className="collapse"
+                aria-labelledby="headingTwo"
+                data-parent="#breakingBadAccordion"
+              >
+                <div className="card-body">
+                  Los personajes principales de la serie incluyen a Walter White,
+                  Jesse Pinkman, Skyler White, y Hank Schrader, cada uno con su
+                  propio arco narrativo y desarrollo a lo largo de la serie.
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      function BreakingBadPage() {
+        return (
+          <div>
+            <h1 style={{ textAlign: "center", padding: "20px" }}>Breaking Bad</h1>
+            <Carousel />
+            <Columns />
+            <Accordion />
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("app"));
+      root.render(<BreakingBadPage />);
+    </script>
+  </body>
+</html>
