@@ -9,8 +9,8 @@
     <script type="text/jsx">
       const app = document.getElementById("app");
 
-      const styles = {
-        container: {
+      const estilos = {
+        contenedor: {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -19,72 +19,79 @@
           textAlign: 'center',
           backgroundColor: '#B3E5FC'
         },
-        game: {
+        juego: {
           listStyleType: 'none',
           marginBottom: '20px'
         },
-        img: {
+        imagen: {
           marginTop: '10px',
           width: '300px'
         }
       };
  
-      function Header({ title }) {
-        return <h1>{title ? title : "Default title"}</h1>;
+      function Encabezado({ titulo }) {
+        return <h1>{titulo ? titulo : "Título predeterminado"}</h1>;
       }
  
-      function Game({ name, imgSrc }) {
-        const [likes, setLikes] = React.useState(0);
-        const [isFavorite, setIsFavorite] = React.useState(false);
+      function Juego({ nombre, imagenSrc }) {
+        const [calificacion, setCalificacion] = React.useState(5);
+        const [esFavorito, setEsFavorito] = React.useState(false);
  
-        function handleLikeClick() {
-          setLikes(likes + 1);
+        function manejarCambioCalificacion(evento) {
+          setCalificacion(evento.target.value);
         }
 
-        function handleFavoriteClick() {
-          setIsFavorite(!isFavorite);
+        function manejarClicFavorito() {
+          setEsFavorito(!esFavorito);
         }
  
         return (
-          <li style={styles.game}>
-            <span>{name}</span>
-            <button style={{ marginLeft: "10px" }} onClick={handleLikeClick}>
-              Like ({likes})
-            </button>
+          <li style={estilos.juego}>
+            <span>{nombre}</span>
+            <div style={{ marginTop: '10px' }}>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                value={calificacion}
+                onChange={manejarCambioCalificacion}
+              />
+              <span style={{ marginLeft: '10px' }}>Calificación: {calificacion}</span>
+            </div>
             <button
-              style={{ marginLeft: "10px" }}
-              onClick={handleFavoriteClick}
+              style={{ marginLeft: "10px", marginTop: "10px" }}
+              onClick={manejarClicFavorito}
             >
-              {isFavorite ? "Unfavorite" : "Favorite"}
+              {esFavorito ? "Quitar de favoritos" : "Favorito"}
             </button>
             <div>
-              <img src={imgSrc} alt={name} style={styles.img} />
+              <img src={imagenSrc} alt={nombre} style={estilos.imagen} />
             </div>
           </li>
         );
       }
  
-      function HomePage() {
-        const games = [
-          { name: "Catan", imgSrc: "catan.jpg" },
-          { name: "Carcassonne", imgSrc: "carca.jpg" },
-          { name: "Agricola", imgSrc: "agricola.jpg" },
+      function PaginaPrincipal() {
+        const juegos = [
+          { nombre: "Catan", imagenSrc: "catan.jpg" },
+          { nombre: "Carcassonne", imagenSrc: "carca.jpg" },
+          { nombre: "Agricola", imagenSrc: "agricola.jpg" },
         ];
  
         return (
-          <div style={styles.container}>
-            <Header title="Juegos de Mesa" />
+          <div style={estilos.contenedor}>
+            <Encabezado titulo="Juegos de Mesa" />
             <ul>
-              {games.map((game) => (
-                <Game key={game.name} name={game.name} imgSrc={game.imgSrc} />
+              {juegos.map((juego) => (
+                <Juego key={juego.nombre} nombre={juego.nombre} imagenSrc={juego.imagenSrc} />
               ))}
             </ul>
           </div>
         );
       }
  
-      const root = ReactDOM.createRoot(app);
-      root.render(<HomePage />);
+      const raiz = ReactDOM.createRoot(app);
+      raiz.render(<PaginaPrincipal />);
     </script>
   </body>
 </html>
